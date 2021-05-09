@@ -7,6 +7,7 @@ metadata:
   namespace: 
   labels:
     grafana_dashboard: "1"
+    namespace: {{ .Values.serviceMonitor.selector.release }}
   annotations:
     k8s-sidecar-target-directory: "/tmp/dashboards/{{ include "hs110-exporter.fullname" . }}"
 data:
