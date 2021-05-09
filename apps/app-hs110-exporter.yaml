@@ -1,0 +1,21 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: hs110
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: hs110
+  source:
+    repoURL: https://github.com/sdelrio/gitops-hs110.git
+    targetRevision: HEAD
+    path: hs110-exporter
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: hs110
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
