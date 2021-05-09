@@ -1,0 +1,9 @@
+apiVersion: v2
+name: "hs110-exporter"
+description: "Chart for hs110 prometheus exporter"
+type: application
+# app version
+appVersion: "0.97"
+# chart version
+version: 0.1.0
+

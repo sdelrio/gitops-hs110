@@ -1,0 +1,61 @@
+
+image:
+  repository: sdelrio/hs110-exporter
+  pullPolicy: IfNotPresent
+  tag: "0.97"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: ClusterIP
+  port: 8110
+
+serviceAccount:
+  create: true
+  annotations: {}
+  name: ""
+
+resources:
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  limits:
+    cpu: 50m
+    memory: 64Mi
+  requests:
+    cpu: 25m
+    memory: 32Mi
+
+serviceMonitor:
+  enabled: true
+  selector:
+    release:  monitoring
+#    prometheus: kube-prometheus
+  additionalLabels: {}
+
+hs110:
+  ip: 192.168.1.53
+  frequency: 15
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+

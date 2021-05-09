@@ -1,0 +1,60 @@
+#apiVersion: extensions/v1beta1
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "hs110-exporter.fullname" . }}
+  labels:
+    {{- include "hs110-exporter.labels" . | nindent 4 }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      {{- include "hs110-exporter.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "hs110-exporter.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "hs110-exporter.serviceAccountName" . }}
+      containers:
+      - env:
+        - name: HS110IP
+          value: "{{ .Values.hs110.ip }}"
+        - name: FREQUENCY
+          value: "{{ .Values.hs110.frequency }}"
+        - name: LISTENPORT
+          value: "{{ .Values.service.port }}"
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+        name: {{ .Chart.Name }}
+        ports:
+        - name: web
+          containerPort: 8110
+#        livenessProbe:
+#          httpGet:
+#            path: /
+#            port: http
+#        readinessProbe:
+#          httpGet:
+#            path: /
+#            port: http
+
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

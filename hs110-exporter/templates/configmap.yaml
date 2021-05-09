@@ -1,0 +1,14 @@
+{{- if .Values.serviceMonitor.enabled }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "hs110-exporter.fullname" . }}
+  namespace: 
+  labels:
+    grafana_dashboard: "1"
+  annotations:
+    k8s-sidecar-target-directory: "/tmp/dashboards/{{ include "hs110-exporter.fullname" . }}"
+data:
+{{ (.Files.Glob "dashboards/**.json").AsConfig | indent 2 }}
+{{- end }}

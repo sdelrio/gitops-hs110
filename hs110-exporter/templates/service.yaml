@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ include "hs110-exporter.fullname" . }}
+  labels:
+    {{- include "hs110-exporter.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  selector:
+    {{- include "hs110-exporter.selectorLabels" . | nindent 4 }}
+  ports:
+  - name: web
+    port: {{ .Values.service.port }}
+    targetPort: web

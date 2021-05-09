@@ -1,0 +1,25 @@
+{{- if .Values.serviceMonitor.enabled }}
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ include "hs110-exporter.fullname" . }}
+  labels:
+    {{- include "hs110-exporter.labels" . | nindent 4 }}
+    {{- if .Values.serviceMonitor.selector }}
+{{- toYaml .Values.serviceMonitor.selector | nindent 4 }}
+    {{- end }}
+    {{- if .Values.serviceMonitor.additionalLabels }}
+{{- toYaml .Values.serviceMonitor.additionalLabels | nindent 4 }}
+    {{- end }}
+
+spec:
+  selector:
+    matchLabels:
+      {{- include "hs110-exporter.selectorLabels" . | nindent 6 }}
+  endpoints:
+  - port: web
+  namespaceSelector:
+    matchNames:
+    - {{ .Release.Namespace }}
+{{- end }}
