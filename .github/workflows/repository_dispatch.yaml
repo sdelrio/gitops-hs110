@@ -11,6 +11,7 @@ jobs:
       DIRNAME: ${{github.event.client_payload.dirName }}
       BASEREF: ${{github.event.client_payload.baseRef }}
       COMMITMSG: ${{github.event.client_payload.commitMsg }} 
+      TAG: ${{github.event.client_payload.newTag }}
     steps:
       ## The script checks the branch, if the branch is not expected one (sandbox, qa, master) then error is triggered.
       - name: Event Information
@@ -18,11 +19,17 @@ jobs:
           dirName=$DIRNAME
           receivedMessage="$COMMITMSG"
           baseRef=$BASEREF
+          newTag=$TAG
           echo "receivedMessage=> $receivedMessage , path=> ./$dirName/change.log , baseRef: $baseRef"
-
+          echo "newTag=> $newTag"
           if [ $baseRef != 'sandbox' ] && [ $baseRef != 'qa' ] && [ $baseRef != 'master' ]
           then
               echo ">>>>>>>>>>>>>>>>>>>> This Base branch is $baseRef, does not follow policy! <<<<<<<<<<<<<<<"
+              exit 1
+          fi
+          if [ -z $newTag == '' ]
+          then
+              echo ">>>>>>>>>>>>>>>>>>>> Thes newTag is empty <<<<<<<<<<<<<<<<<<<<<"
               exit 1
           fi
       ## these are the examplar values
@@ -43,8 +50,9 @@ jobs:
           receivedMessage="$COMMITMSG"
           baseRef=$BASEREF
           commitTime=`date`
-          commitMsg="$commitTime,  hs110-exporter GitOps: $receivedMessage"
+          commitMsg="$commitTime, hs110-exporter GitOps: $receivedMessage"
           sed -i -E "s|(<lastCommitMsg>).*(<\/lastCommitMsg>)|\1$commitMsg\2|" $dirName/values.yaml
+          sed -i -E 's|tag: .*|tag: "v0.98"|' $dirName/values.yaml
 
       ## Now we have to commit the changes, and EndBug/add-and-commit@v5 github action is used for that purpose:
       ##
