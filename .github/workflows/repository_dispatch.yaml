@@ -62,7 +62,7 @@ jobs:
           author_name: "GH Actions"
           author_email: sdelrio@users.noreply.github.com
           branch: ${{github.event.client_payload.baseRef }}
-          message: "App commit msg: $COMMITMSG"
+          message: "App commit msg: ${{github.event.client_payload.commitMsg }}"
           add: "*"
 #        env:
 #          GITHUB_TOKEN: $GITHUB_TOKEN
