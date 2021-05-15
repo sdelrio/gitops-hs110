@@ -44,7 +44,7 @@ jobs:
           baseRef=$BASEREF
           commitTime=`date`
           commitMsg="$commitTime,  hs110-exporter GitOps: $receivedMessage"
-          sed -i -E "s|(<lastCommitMsg>).*(<\/lastCommitMsg>)|\1$commitMsg\2|" $dirName/$baseRef/values.yaml
+          sed -i -E "s|(<lastCommitMsg>).*(<\/lastCommitMsg>)|\1$commitMsg\2|" $dirName/values.yaml
 
       ## Now we have to commit the changes, and EndBug/add-and-commit@v5 github action is used for that purpose:
       ##
