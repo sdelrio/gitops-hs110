@@ -7,15 +7,18 @@ jobs:
     name: Distribute the hs110 app
     if: github.event.client_payload.action == 'distribute'
     runs-on: ubuntu-latest
-
+    env:
+      DIRNAME: ${{github.event.client_payload.dirName }}
+      BASEREF: ${{github.event.client_payload.baseRef }}
+      COMMITMSG: ${{github.event.client_payload.commitMsg }} 
     steps:
       ## The script checks the branch, if the branch is not expected one (sandbox, qa, master) then error is triggered.
       - name: Event Information
         run: |
-          dirName=$
-          receivedMessage="$"
-          baseRef=$
-          echo "receivedMessage=> $receivedMessage , path=> $dirName/change.log , baseRef: $baseRef"
+          dirName=$DIRNAME
+          receivedMessage="$COMMITMSG"
+          baseRef=$BASEREF
+          echo "receivedMessage=> $receivedMessage , path=> ./$dirName/change.log , baseRef: $baseRef"
 
           if [ $baseRef != 'sandbox' ] && [ $baseRef != 'qa' ] && [ $baseRef != 'master' ]
           then
@@ -37,9 +40,9 @@ jobs:
       ## Github action code snippet that changes last commit message value, and that way initiates synchronization at ArgoCD.
       - name: Replace commit message environment
         run: |
-          dirName=$
-          receivedMessage="$"
-          baseRef=$
+          dirName=$DIRNAME
+          receivedMessage="$COMMITMSG"
+          baseRef=$BASEREF
           commitTime=`date`
           commitMsg="$commitTime,  hs110-exporter GitOps: $receivedMessage"
           sed -i -E "s|(<lastCommitMsg>).*(<\/lastCommitMsg>)|\1$commitMsg\2|" $dirName/$baseRef/values.yaml
