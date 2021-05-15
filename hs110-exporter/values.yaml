@@ -1,11 +1,11 @@
 ##
-## <lastCommitMsg>Sat May 15 17:19:31 UTC 2021, hs110-exporter GitOps: test message 1</lastCommitMsg>
+## <lastCommitMsg>Sat May 15 17:22:17 UTC 2021, hs110-exporter GitOps: test message 1</lastCommitMsg>
 ##
 
 image:
   repository: sdelrio/hs110-exporter
   pullPolicy: IfNotPresent
-  tag: "$TAG"
+  tag: "v0.97"
 
 imagePullSecrets: []
 nameOverride: ""
