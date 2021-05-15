@@ -1,12 +1,12 @@
-on:
-  repository_dispatch:
-    types: [hs110-exporter]
+name: CI GitOps
+
+on: repository_dispatch
 
 jobs:
-  repository_dispatch:
+  distribute:
     name: Distribute the hs110 app
-    if: github.event.client_payload.action == 'hs110-exporter'
-    runs-on: ubuntu-latests
+    if: github.event.client_payload.action == 'distribute'
+    runs-on: ubuntu-latest
 
     steps:
       ## The script checks the branch, if the branch is not expected one (sandbox, qa, master) then error is triggered.
