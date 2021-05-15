@@ -56,7 +56,6 @@ jobs:
           head $dirName/values.yaml
 
       ## Now we have to commit the changes, and EndBug/add-and-commit@v5 github action is used for that purpose:
-      ##
       - name: Commit changes
         uses: EndBug/add-and-commit@v5
         with:
@@ -65,6 +64,6 @@ jobs:
           branch: ${{github.event.client_payload.baseRef }}
           message: "App commit msg: ${{github.event.client_payload.commitMsg }}"
           add: "*"
-#        env:
-#          GITHUB_TOKEN: $GITHUB_TOKEN
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
