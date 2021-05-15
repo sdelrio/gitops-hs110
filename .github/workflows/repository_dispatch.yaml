@@ -1,0 +1,57 @@
+on:
+  repository_dispatch:
+    types: [custom_event_type]
+
+jobs:
+  repository_dispatch:
+    runs-on: ubuntu-latests
+
+    steps:
+      ## The script checks the branch, if the branch is not expected one (sandbox, qa, master) then error is triggered.
+      - name: Event Information
+        run: |
+          dirName=$
+          receivedMessage="$"
+          baseRef=$
+          echo "receivedMessage=> $receivedMessage , path=> $dirName/change.log , baseRef: $baseRef"
+
+          if [ $baseRef != 'sandbox' ] && [ $baseRef != 'qa' ] && [ $baseRef != 'master' ]
+          then
+              echo ">>>>>>>>>>>>>>>>>>>> This Base branch is $baseRef, does not follow policy! <<<<<<<<<<<<<<<"
+              exit 1
+          fi
+      ## these are the examplar values
+      # dirName=hs110-exporter
+      # receivedMessage=commited message
+      # baseRef=master
+
+      ## The steps do not share the local variables thats why we have to access through github.event.client_payload.baseref.
+      - name: Checkout repo
+        uses: actions/checkout@v2
+        with:
+          ref: $
+
+
+      ## Github action code snippet that changes last commit message value, and that way initiates synchronization at ArgoCD.
+      - name: Replace commit message environment
+        run: |
+          dirName=$
+          receivedMessage="$"
+          baseRef=$
+          commitTime=`date`
+          commitMsg="$commitTime,  hs110-exporter GitOps: $receivedMessage"
+          sed -i -E "s|(<lastCommitMsg>).*(<\/lastCommitMsg>)|\1$commitMsg\2|" $dirName/$baseRef/values.yaml
+
+      ## Now we have to commit the changes, and EndBug/add-and-commit@v5 github action is used for that purpose:
+      ##
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v5
+        with:
+          author_name: "repository_$"
+          author_email: sdelrio@users.noreply.github.com
+          branch: $
+          message: "App commit msg: $"
+          add: "*"
+        env:
+          GITHUB_TOKEN: $
+
