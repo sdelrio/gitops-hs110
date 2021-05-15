@@ -34,8 +34,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v2
         with:
-          ref: $
-
+          ref: ${{github.event.client_payload.baseRef }}
 
       ## Github action code snippet that changes last commit message value, and that way initiates synchronization at ArgoCD.
       - name: Replace commit message environment
@@ -52,11 +51,11 @@ jobs:
       - name: Commit changes
         uses: EndBug/add-and-commit@v5
         with:
-          author_name: "repository_$"
+          author_name: "GH Actions"
           author_email: sdelrio@users.noreply.github.com
-          branch: $
-          message: "App commit msg: $"
+          branch: ${{github.event.client_payload.baseRef }}
+          message: "App commit msg: $COMMITMSG"
           add: "*"
-        env:
-          GITHUB_TOKEN: $
+#        env:
+#          GITHUB_TOKEN: $GITHUB_TOKEN
 
