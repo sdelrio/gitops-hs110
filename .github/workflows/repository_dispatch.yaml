@@ -16,12 +16,14 @@ jobs:
       ## The script checks the branch, if the branch is not expected one (sandbox, qa, master) then error is triggered.
       - name: Event Information
         run: |
+          eventAction=${{ github.event.action }}
           dirName=$DIRNAME
           receivedMessage="$COMMITMSG"
           baseRef=$BASEREF
           newTag=$TAG
           echo "receivedMessage=> $receivedMessage , path=> ./$dirName/change.log , baseRef: $baseRef"
           echo "newTag=> $newTag"
+          echo "eventAction=> $eventAction"
           if [ $baseRef != 'sandbox' ] && [ $baseRef != 'qa' ] && [ $baseRef != 'master' ]
           then
               echo ">>>>>>>>>>>>>>>>>>>> This Base branch is $baseRef, does not follow policy! <<<<<<<<<<<<<<<"
@@ -29,7 +31,7 @@ jobs:
           fi
           if [ -z $newTag == '' ]
           then
-              echo ">>>>>>>>>>>>>>>>>>>> Thes newTag is empty <<<<<<<<<<<<<<<<<<<<<"
+              echo ">>>>>>>>>>>>>>>>>>>> The newTag is empty <<<<<<<<<<<<<<<<<<<<<"
               exit 1
           fi
       ## these are the examplar values
@@ -59,7 +61,7 @@ jobs:
       - name: Commit changes
         uses: EndBug/add-and-commit@v5
         with:
-          author_name: "GH Actions"
+          author_name: "GH Actions repository_${{ github.event.action }}"
           author_email: sdelrio@users.noreply.github.com
           branch: ${{github.event.client_payload.baseRef }}
           message: "App commit msg: ${{github.event.client_payload.commitMsg }}"
