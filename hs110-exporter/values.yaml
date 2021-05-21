@@ -1,11 +1,11 @@
 ##
-## <lastCommitMsg>Sat May 15 22:00:15 UTC 2021, hs110-exporter GitOps: 97d46f9 ci: fix env TAG</lastCommitMsg>
+## <lastCommitMsg>Fri May 21 20:56:53 UTC 2021, hs110-exporter GitOps: 3629bbc add extra label parameter (#24)</lastCommitMsg>
 ##
 
 image:
   repository: sdelrio/hs110-exporter
   pullPolicy: IfNotPresent
-  tag: "97d46f9"
+  tag: "3629bbc"
 
 imagePullSecrets: []
 nameOverride: ""
