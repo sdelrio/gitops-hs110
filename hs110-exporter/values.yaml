@@ -1,11 +1,11 @@
 ##
-## <lastCommitMsg>Fri May 21 20:56:53 UTC 2021, hs110-exporter GitOps: 3629bbc add extra label parameter (#24)</lastCommitMsg>
+## <lastCommitMsg>Sat May 22 16:13:43 UTC 2021, hs110-exporter GitOps: be42664 multi-arch: container image (#26)</lastCommitMsg>
 ##
 
 image:
   repository: sdelrio/hs110-exporter
   pullPolicy: IfNotPresent
-  tag: "3629bbc"
+  tag: "be42664"
 
 imagePullSecrets: []
 nameOverride: ""
