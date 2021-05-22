@@ -1,11 +1,11 @@
 ##
-## <lastCommitMsg>Sat May 22 16:37:12 UTC 2021, hs110-exporter GitOps: afb8b83 ci: buildx usage</lastCommitMsg>
+## <lastCommitMsg>Sat May 22 17:00:40 UTC 2021, hs110-exporter GitOps: 4eb84e6 entrypont: back to /bin/sh</lastCommitMsg>
 ##
 
 image:
   repository: sdelrio/hs110-exporter
   pullPolicy: IfNotPresent
-  tag: "afb8b83"
+  tag: "4eb84e6"
 
 imagePullSecrets: []
 nameOverride: ""
