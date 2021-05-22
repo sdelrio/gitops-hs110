@@ -1,11 +1,11 @@
 ##
-## <lastCommitMsg>Sat May 22 17:21:06 UTC 2021, hs110-exporter GitOps: 7832b62 ci: cleanup and clean script</lastCommitMsg>
+## <lastCommitMsg>Sat May 22 17:30:46 UTC 2021, hs110-exporter GitOps: d74cf8f ci: upadte PR and TAG events (#27)</lastCommitMsg>
 ##
 
 image:
   repository: sdelrio/hs110-exporter
   pullPolicy: IfNotPresent
-  tag: "7832b62"
+  tag: "d74cf8f"
 
 imagePullSecrets: []
 nameOverride: ""
