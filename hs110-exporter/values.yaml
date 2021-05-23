@@ -1,11 +1,11 @@
 ##
-## <lastCommitMsg>Sun May 23 13:10:47 UTC 2021, hs110-exporter GitOps: 41577f3 ci: fix tag ref/tags remove</lastCommitMsg>
+## <lastCommitMsg>Sun May 23 13:11:28 UTC 2021, hs110-exporter GitOps: 41577f3 ci: fix tag ref/tags remove</lastCommitMsg>
 ##
 
 image:
   repository: sdelrio/hs110-exporter
   pullPolicy: IfNotPresent
-  tag: ""
+  tag: "sdelrio/hs110-exporter:v0.99.6"
 
 imagePullSecrets: []
 nameOverride: ""
