@@ -1,11 +1,11 @@
 ##
-## <lastCommitMsg>Sun May 23 13:24:34 UTC 2021, hs110-exporter GitOps: 741aed1 ci: fix gitops tag name</lastCommitMsg>
+## <lastCommitMsg>Sun May 23 13:25:26 UTC 2021, hs110-exporter GitOps: 741aed1 ci: fix gitops tag name</lastCommitMsg>
 ##
 
 image:
   repository: sdelrio/hs110-exporter
   pullPolicy: IfNotPresent
-  tag: ""
+  tag: "v0.99.7"
 
 imagePullSecrets: []
 nameOverride: ""
