@@ -1,11 +1,11 @@
 ##
-## <lastCommitMsg>Sun May 23 10:55:22 UTC 2021, hs110-exporter GitOps: e11cf0a ci: fix multiplatform build-push-action on master</lastCommitMsg>
+## <lastCommitMsg>Sun May 23 11:06:44 UTC 2021, hs110-exporter GitOps: 8818aae ci: add comments to buildx action</lastCommitMsg>
 ##
 
 image:
   repository: sdelrio/hs110-exporter
   pullPolicy: IfNotPresent
-  tag: "e11cf0a"
+  tag: "8818aae"
 
 imagePullSecrets: []
 nameOverride: ""
