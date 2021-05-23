@@ -1,11 +1,11 @@
 ##
-## <lastCommitMsg>Sun May 23 10:52:20 UTC 2021, hs110-exporter GitOps: 5a533c4 ci: fix build-push-action tag</lastCommitMsg>
+## <lastCommitMsg>Sun May 23 10:55:22 UTC 2021, hs110-exporter GitOps: e11cf0a ci: fix multiplatform build-push-action on master</lastCommitMsg>
 ##
 
 image:
   repository: sdelrio/hs110-exporter
   pullPolicy: IfNotPresent
-  tag: "5a533c4"
+  tag: "e11cf0a"
 
 imagePullSecrets: []
 nameOverride: ""
