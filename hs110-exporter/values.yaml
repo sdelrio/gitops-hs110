@@ -1,5 +1,5 @@
 ##
-## <lastCommitMsg>Sun May 23 12:21:01 UTC 2021, hs110-exporter GitOps: e2db161 ci: clean commented steps, tag with buildx</lastCommitMsg>
+## <lastCommitMsg>Sun May 23 12:29:44 UTC 2021, hs110-exporter GitOps: 02aa651 ci: publish latest and version on tag</lastCommitMsg>
 ##
 
 image:
