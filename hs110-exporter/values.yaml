@@ -1,11 +1,11 @@
 ##
-## <lastCommitMsg>Sun May 23 11:06:44 UTC 2021, hs110-exporter GitOps: 8818aae ci: add comments to buildx action</lastCommitMsg>
+## <lastCommitMsg>Sun May 23 12:21:01 UTC 2021, hs110-exporter GitOps: e2db161 ci: clean commented steps, tag with buildx</lastCommitMsg>
 ##
 
 image:
   repository: sdelrio/hs110-exporter
   pullPolicy: IfNotPresent
-  tag: "8818aae"
+  tag: ""
 
 imagePullSecrets: []
 nameOverride: ""
