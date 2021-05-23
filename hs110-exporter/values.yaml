@@ -1,5 +1,5 @@
 ##
-## <lastCommitMsg>Sun May 23 12:58:32 UTC 2021, hs110-exporter GitOps: 865a6f6 ci: publish latest and version on tag</lastCommitMsg>
+## <lastCommitMsg>Sun May 23 13:05:53 UTC 2021, hs110-exporter GitOps: cc530c2 ci: fix tag ref/tags remove</lastCommitMsg>
 ##
 
 image:
